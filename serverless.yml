@@ -1,4 +1,4 @@
-service: sls-csv-to-json
+service: sls-csv-to-json-service
 
 plugins:
   - serverless-plugin-existing-s3

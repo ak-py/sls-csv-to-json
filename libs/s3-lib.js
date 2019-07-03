@@ -2,11 +2,11 @@ const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-depe
 const s3 = new AWS.S3();
 
 
-const s3CreateFile = async (fileName, data, s3Bucket) => {
+const s3CreateFile = async (fileType, fileName, data, s3Bucket) => {
   const params = {
     Bucket: s3Bucket,
     Key: fileName,
-    ContentType: `text/plain; charset=utf-8`,
+    ContentType: `text/${fileType}; charset=utf-8`,
     Body: data
   };
   const s3Response = await s3.upload(params).promise();
