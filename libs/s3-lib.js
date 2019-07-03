@@ -1,9 +1,10 @@
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 const s3 = new AWS.S3();
 
-const s3CreateFile = async (fileType, fileName, data, customBucket=null) => {
+
+const s3CreateFile = async (fileType, fileName, data, s3Bucket) => {
   const params = {
-    Bucket: customBucket ? customBucket: process.env.BUCKET,
+    Bucket: s3Bucket,
     Key: fileName,
     ContentType: `text/${fileType}; charset=utf-8`,
     Body: data
@@ -13,9 +14,9 @@ const s3CreateFile = async (fileType, fileName, data, customBucket=null) => {
   return (`Success. File uploaded to S3 at ${s3Response.Bucket} bucket. File location: ${s3Response.Location}`);
 };
 
-const s3ReadFile = async (fileName, customBucket=null) => {
+const s3ReadFile = async (fileName, s3Bucket) => {
   const params = {
-    Bucket: customBucket || process.env.BUCKET,
+    Bucket: s3Bucket,
     Key: fileName
   };
   const s3Response = await s3.getObject(params).promise();
