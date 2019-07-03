@@ -1,0 +1,35 @@
+{
+  "name": "sls-csv-to-json",
+  "version": "1.0.0",
+  "description": "REST Api with Create and Read functionality for CSV and JSON files",
+  "main": "handler.js",
+  "dependencies": {
+    "aws-sdk": "^2.484.0",
+    "csvtojson": "^2.0.10",
+    "jest": "^24.8.0",
+    "serverless": "^1.46.1",
+    "serverless-offline": "^5.5.0",
+    "serverless-plugin-existing-s3": "^2.4.0",
+    "serverless-pseudo-parameters": "^2.4.0",
+    "serverless-secrets-plugin": "^0.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "serverless-webpack": "^5.3.1",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "deploy": "sls deploy && sls s3deploy",
+    "test-unit": "jest unit --verbose",
+    "coverage-unit": "jest unit --verbose --coverage",
+    "test": "sls offline start --exec \"jest --verbose\"",
+    "coverage": "sls offline start --exec \"jest --verbose --coverage\"",
+    "mock-post-csv": "serverless invoke local --function createCsv --path mocks/create-csv.json",
+    "mock-get-csv": "serverless invoke local --function readFile --path mocks/read-csv.json",
+    "mock-get-json": "serverless invoke local --function readFile --path mocks/read-json.json",
+    "mock": "npm run mock-post-csv && npm run mock-get-csv && npm run mock-get-json"
+  },
+  "keywords": [],
+  "author": "Akshit Gupta",
+  "license": "MIT"
+}

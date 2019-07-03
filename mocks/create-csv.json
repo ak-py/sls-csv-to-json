@@ -1,0 +1,7 @@
+{
+    "httpMethod": "POST",
+    "pathParameters": {
+        "name": "johndoe"
+    },
+    "body": "username, firstName, lastName, email \n johndoe, John, Doe"
+}

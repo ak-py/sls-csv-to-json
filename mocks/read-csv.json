@@ -1,0 +1,7 @@
+{
+  "httpMethod": "GET",
+  "pathParameters": {
+    "fileType": "csv",
+    "name": "johndoe"
+  }
+}
