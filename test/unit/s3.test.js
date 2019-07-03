@@ -7,7 +7,26 @@ const getFileName = (fileType, name) => {
   return `${fileType}/${name}.${fileType}`;
 };
 
-describe('Unit Tests - s3ReadFile - CSV', () => {
+
+describe('Unit Tests - s3CreateFile', ()=> {
+
+  test("writing file /csv/test-value.csv", async ()=>{
+    const fileName = getFileName("csv", "test-value");
+    const actual = await s3CreateFile(fileName, "test\nvalue",BUCKET);
+    const expected = (`Success. File uploaded to S3 at ${BUCKET} bucket. File location: ${BUCKET_URL_PREFIX}/${BUCKET}/${fileName}`);
+    expect(actual).toEqual(expected)
+  });
+
+  test("writing file /json/test-value.json", async ()=>{
+    const fileName = getFileName("json", "test-value");
+    const actual = await s3CreateFile(fileName, "[{\"test\":\"value\"}]",BUCKET);
+    const expected = (`Success. File uploaded to S3 at ${BUCKET} bucket. File location: ${BUCKET_URL_PREFIX}/${BUCKET}/${fileName}`);
+    expect(actual).toEqual(expected)
+  });
+
+});
+
+describe('Unit Tests - s3ReadFile', () => {
 
   test("reading file /csv/test-value.csv", async ()=>{
     const fileName = getFileName("csv", "test-value");
@@ -32,22 +51,3 @@ describe('Unit Tests - s3ReadFile - CSV', () => {
   });
 });
 
-
-
-describe('Unit Tests - s3CreateFile - CSV', ()=> {
-
-  test("writing file /csv/test-value.csv", async ()=>{
-    const fileName = getFileName("csv", "test-value");
-    const actual = await s3CreateFile("csv", fileName, "test\nvalue",BUCKET);
-    const expected = (`Success. File uploaded to S3 at ${BUCKET} bucket. File location: ${BUCKET_URL_PREFIX}/${BUCKET}/${fileName}`);
-    expect(actual).toEqual(expected)
-  });
-
-  test("writing file /json/test-value.json", async ()=>{
-    const fileName = getFileName("json", "test-value");
-    const actual = await s3CreateFile("json", fileName, "[{\"test\":\"value\"}]",BUCKET);
-    const expected = (`Success. File uploaded to S3 at ${BUCKET} bucket. File location: ${BUCKET_URL_PREFIX}/${BUCKET}/${fileName}`);
-    expect(actual).toEqual(expected)
-  });
-
-});

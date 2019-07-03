@@ -10,7 +10,7 @@ describe("HTTP GET - csv/{name}",() => {
   });
 
   test("test-value", async () => {
-    const response = await getRequest("/csv/test-value").expect('Content-Type', /csv/)
+    const response = await getRequest("/csv/test-value").expect('Content-Type', /text/)
       .expect(200);
     expect(response.text).toEqual("test\nvalue")
   });

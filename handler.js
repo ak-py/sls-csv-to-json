@@ -19,7 +19,7 @@ module.exports.createCsv = async (event) => {
         const fileName = `${fileType}/${name}.${fileType}`;
         const data = event.body;
         // (force) write a file with requested data
-        const msg = await s3CreateFile(fileType, fileName, data, s3Bucket);
+        const msg = await s3CreateFile(fileName, data, s3Bucket);
         return generateResponse(200, {message: msg, data: data});
     } catch(err) {
         console.error(err);
@@ -47,8 +47,10 @@ module.exports.jsonTransformer = async (event) => {
 
         const data = JSON.stringify(jsonObj);
 
+        const s3Bucket = process.env.BUCKET;
+
         // add json file to s3 bucket
-        const msg = await s3CreateFile(fileType, fileName, data);
+        const msg = await s3CreateFile(fileName, data, s3Bucket);
 
         return generateResponse(200, {message: msg});
 
@@ -71,7 +73,7 @@ module.exports.readFile = async (event) => {
         try{
             const s3Bucket = process.env.BUCKET;
             const data = await s3ReadFile(fileName, s3Bucket);
-            const headers = { "Content-Type": `text/${fileType}` };
+            const headers = { "Content-Type": `text/plain` };
             return {
                 statusCode: 200,
                 headers: headers,

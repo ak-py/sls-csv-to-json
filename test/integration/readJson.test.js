@@ -10,7 +10,7 @@ describe("HTTP GET - json/{name}",() => {
   });
 
   test("test-value", async () => {
-    const response = await getRequest("/json/test-value").expect('Content-Type', /json/)
+    const response = await getRequest("/json/test-value").expect('Content-Type', /text/)
       .expect(200);
     expect(response.text).toEqual("[{\"test\":\"value\"}]");
   });
