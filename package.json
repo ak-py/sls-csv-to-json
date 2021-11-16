@@ -4,7 +4,7 @@
   "description": "REST Api with Create and Read functionality for CSV and JSON files",
   "main": "handler.js",
   "dependencies": {
-    "aws-sdk": "^2.484.0",
+    "aws-sdk": "^2.814.0",
     "csvtojson": "^2.0.10",
     "jest": "^24.8.0",
     "serverless": "^1.46.1",
