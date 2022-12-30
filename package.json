@@ -7,7 +7,7 @@
     "aws-sdk": "^2.484.0",
     "csvtojson": "^2.0.10",
     "jest": "^24.8.0",
-    "serverless": "^1.46.1",
+    "serverless": "^1.83.3",
     "serverless-offline": "^5.5.0",
     "serverless-plugin-existing-s3": "^2.4.0",
     "serverless-pseudo-parameters": "^2.4.0",
